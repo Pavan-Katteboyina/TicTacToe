@@ -12,6 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class Multiplayer extends AppCompatActivity {
+    private int roundCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,7 @@ public class Multiplayer extends AppCompatActivity {
     public void bu(View view) {
         Button buSelected = (Button) view;
         buSelected.setBackgroundColor(Color.MAGENTA);
-        int CellId = 0;
+        int  CellId = 0;
         switch ((buSelected.getId())) {
 
             case R.id.button1:
@@ -94,6 +95,7 @@ public class Multiplayer extends AppCompatActivity {
             Player2.add(CellId);
             ActivePlayer = 1;
         }
+        roundCount++;
         buSelected.setEnabled(false);
         CheckWinner();
 
@@ -132,9 +134,8 @@ public class Multiplayer extends AppCompatActivity {
 
         //columcheck
 
-        if (Player1.contains(1) && Player1.contains(3) && Player1.contains(7)) {
+        if (Player1.contains(1) && Player1.contains(3) && Player1.contains(7)){
             Winner = 1;
-
         }
         if (Player2.contains(1) && Player2.contains(3) && Player2.contains(7)) {
             Winner = 2;
@@ -180,7 +181,14 @@ public class Multiplayer extends AppCompatActivity {
         if (Player2.contains(3) && Player2.contains(5) && Player2.contains(7)) {
             Winner = 2;
 
+
         }
+
+
+
+
+
+
 
         if (Winner != -1) {
             if (Winner == 1) {
@@ -192,12 +200,21 @@ public class Multiplayer extends AppCompatActivity {
                 Toast.makeText(this, "Player 2 Won the Match", Toast.LENGTH_LONG).show();
                 finish();
             }
+        else {
+            if (roundCount==9){
+                Toast.makeText(this, "Draw Match", Toast.LENGTH_LONG).show();
+                finish();
+            }
+            }
+
+
+            }
             
 
 
 
 
         }
+
     }
 
-}

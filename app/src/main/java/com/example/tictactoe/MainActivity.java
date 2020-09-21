@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+    private int roundCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void bu(View view) {
+
         Button buSelected =(Button) view;
         buSelected.setBackgroundColor(Color.MAGENTA);
         int CellId=0;
@@ -101,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
             Player2.add(CellId);
             ActivePlayer=1;
         }
+         roundCount++;
         buSelected.setEnabled(false);
         CheckWinner();
 
@@ -189,6 +192,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+
+
         if (Winner!=-1){
             if (Winner==1){
                 Toast.makeText(this,"Player 1 Won the Match", Toast.LENGTH_LONG).show();
@@ -196,9 +201,17 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (Winner==2){
-                Toast.makeText(this,"Player 2 Won the Match", Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"Computer Won the Match", Toast.LENGTH_LONG).show();
                 finish();
             }
+        else  {
+                if (roundCount==9){
+                    Toast.makeText(this, "Draw Match", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            }
+
+
         }
 
 
